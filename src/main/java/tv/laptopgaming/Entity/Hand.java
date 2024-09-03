@@ -51,8 +51,7 @@ public class Hand {
   public void sortHand() {
     List<Tile> sortedHand;
     sortedHand = hand.stream().sorted(
-        (tile1, tile2) -> tile1.getSuit().compareTo(tile2.getSuit())).sorted(
-            (tile1, tile2) -> tile1.getRank().compareTo(tile2.getRank())
+        (tile1, tile2) -> tile1.getSuit().compareTo(tile2.getSuit())
     ).toList();
     this.hand = sortedHand;
   }
