@@ -1,9 +1,9 @@
 package tv.laptopgaming.Entity;
 
 public enum Suit {
+  Symbol,
   Bamboo,
   Dots,
-  Symbol,
-  Dragon,
-  Wind
+  Wind,
+  Dragon
 }

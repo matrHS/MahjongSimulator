@@ -40,10 +40,12 @@ public class GameManager {
   
   public void startGame() {
     currentPlayer = 0;
-    while (tileManager.getTilesSize() > 0) {
-      Scanner userInput = new Scanner(System.in);
-      System.out.println(hands.get(currentPlayer).toString());
-    }
+    hands.get(currentPlayer).sortHand();
+    System.out.println(hands.get(currentPlayer).toString());
+//    while (tileManager.getTilesSize() > 0) {
+//      Scanner userInput = new Scanner(System.in);
+//      System.out.println(hands.get(currentPlayer).toString());
+//    }
   }
   
   private void dealStartingHands() {
