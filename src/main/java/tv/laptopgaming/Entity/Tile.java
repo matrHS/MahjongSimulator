@@ -16,5 +16,8 @@ public class Tile {
     this.suit = suit;
   }
   
-
+  public Suit getSuit() {
+    return this.suit;
+  }
+  
 }

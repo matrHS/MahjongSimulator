@@ -18,4 +18,13 @@ public class HonorTile extends Tile{
   private void setHonor(Honor honor) {
     this.honorSymbol = honor;
   }
+  
+  private Honor getHonor() {
+    return this.honorSymbol;
+  }
+  
+  @Override
+  public String toString() {
+    return this.getSuit() + " " + this.getHonor();
+  }
 }
