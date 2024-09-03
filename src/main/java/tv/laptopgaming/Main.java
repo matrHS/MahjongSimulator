@@ -14,6 +14,7 @@ public class Main {
     gameManager = new GameManager();
     
     gameManager.gameSetup();
+    gameManager.startGame();
   }
   
   

@@ -2,6 +2,7 @@ package tv.laptopgaming.Logic;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import tv.laptopgaming.Entity.Hand;
 import tv.laptopgaming.Entity.Honor;
 import tv.laptopgaming.Entity.HonorTile;
@@ -13,6 +14,7 @@ public class GameManager {
   
   private TileManager tileManager; 
   private List<Hand> hands;
+  private int currentPlayer;
   
   public GameManager() {
     
@@ -32,15 +34,16 @@ public class GameManager {
     dealStartingHands();
     System.out.println(tileManager.getTilesSize());
     
-    printPlayerHand(hands.get(0));
-    printPlayerHand(hands.get(1));
-    printPlayerHand(hands.get(2));
-    printPlayerHand(hands.get(3));
+
     
   }
   
   public void startGame() {
-    
+    currentPlayer = 0;
+    while (tileManager.getTilesSize() > 0) {
+      Scanner userInput = new Scanner(System.in);
+      System.out.println(hands.get(currentPlayer).toString());
+    }
   }
   
   private void dealStartingHands() {

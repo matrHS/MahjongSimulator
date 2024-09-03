@@ -30,7 +30,7 @@ public class Hand {
    * 
    * @param tile to remove.
    */
-  public void removeTile(Tile tile) {
+  private void removeTile(Tile tile) {
     hand.remove(tile);
   }
   
@@ -40,5 +40,26 @@ public class Hand {
   
   public String getPlayerName() {
     return this.playerName;
+  }
+  
+  public void discardTile(Tile tile) {
+    if (hand.contains(tile)) {
+      this.removeTile(tile);
+    }
+  }
+  
+  public void sortHand() {
+    
+  }
+  
+  @Override
+  public String toString() {
+    StringBuilder sb;
+    sb = new StringBuilder();
+    for (Tile tile : hand) {
+      sb.append(tile.toString());
+      sb.append(", ");
+    }
+    return sb.toString();
   }
 }
