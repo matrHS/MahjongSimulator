@@ -40,10 +40,22 @@ public class Main {
   
   public static void addHonorTiles(TileManager tileManager,Suit suit) {
     for (Honor honor : Honor.values()) {
-      tileManager.addTile(new HonorTile(suit,honor));
-      tileManager.addTile(new HonorTile(suit,honor));
-      tileManager.addTile(new HonorTile(suit,honor));
-      tileManager.addTile(new HonorTile(suit,honor));
+      if (suit == Suit.Dragon) {
+        if (honor == Honor.Red || honor == Honor.Green || honor == Honor.White) {
+          tileManager.addTile(new HonorTile(suit,honor));
+          tileManager.addTile(new HonorTile(suit,honor));
+          tileManager.addTile(new HonorTile(suit,honor));
+          tileManager.addTile(new HonorTile(suit,honor));
+        }
+      } else if (suit == Suit.Wind) {
+        if (honor == Honor.East || honor == Honor.South || honor == Honor.West ||
+            honor == Honor.North) {
+          tileManager.addTile(new HonorTile(suit, honor));
+          tileManager.addTile(new HonorTile(suit, honor));
+          tileManager.addTile(new HonorTile(suit, honor));
+          tileManager.addTile(new HonorTile(suit, honor));
+        }
+      }
     }
   }
   
