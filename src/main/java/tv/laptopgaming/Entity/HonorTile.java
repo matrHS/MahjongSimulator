@@ -23,7 +23,9 @@ public class HonorTile extends Tile{
     return this.honorSymbol;
   }
   
-  
+  public int compareTo(HonorTile o) {
+    return this.getHonor().compareTo(o.getHonor());
+  }
   
   @Override
   public String toString() {

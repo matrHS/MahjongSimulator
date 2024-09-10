@@ -21,7 +21,16 @@ public class NumberTile extends Tile{
   private int getNumber() {
     return this.number;
   }
+
   
+  public int compareTo(NumberTile o) {
+    int comparisonValue = this.getSuit().compareTo(o.getSuit());
+    if (comparisonValue == 0) {
+      comparisonValue = Integer.compare(this.getNumber(), o.getNumber());
+    }
+    
+    return comparisonValue;
+  }
  
   
   @Override

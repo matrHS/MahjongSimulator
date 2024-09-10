@@ -1,5 +1,7 @@
 package tv.laptopgaming.Entity;
 
+import java.util.Comparator;
+
 public class Tile {
   private Suit suit;
 
@@ -19,7 +21,7 @@ public class Tile {
   public Suit getSuit() {
     return this.suit;
   }
-  
-  
+
+
   
 }

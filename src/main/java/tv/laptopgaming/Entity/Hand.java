@@ -50,9 +50,26 @@ public class Hand {
   
   public void sortHand() {
     List<Tile> sortedHand;
+    
+    
     sortedHand = hand.stream().sorted(
-        (tile1, tile2) -> tile1.getSuit().compareTo(tile2.getSuit())
+        (tile1, tile2) -> {
+          if (tile1.getSuit().compareTo(tile2.getSuit()) == 0) {
+            if (tile1 instanceof NumberTile && tile2 instanceof NumberTile) {
+              return ((NumberTile) tile1).compareTo((NumberTile) tile2);
+            } else if (tile1 instanceof HonorTile && tile2 instanceof HonorTile) {
+              return ((HonorTile) tile1).compareTo((HonorTile) tile2);
+            } else if (tile1 instanceof NumberTile && tile2 instanceof HonorTile) {
+              return -1;
+            } else {
+              return 1;
+            }
+          } else {
+            return tile1.getSuit().compareTo(tile2.getSuit());
+          }
+        }
     ).toList();
+    
     this.hand = sortedHand;
   }
   
