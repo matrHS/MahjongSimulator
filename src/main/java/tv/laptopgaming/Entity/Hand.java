@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Hand {
-  private List<Tile> hand;
+  private ArrayList<Tile> hand;
   private String playerName;
   
   public Hand(String playerName) {
@@ -51,7 +51,6 @@ public class Hand {
   public void sortHand() {
     List<Tile> sortedHand;
     
-    
     sortedHand = hand.stream().sorted(
         (tile1, tile2) -> {
           if (tile1.getSuit().compareTo(tile2.getSuit()) == 0) {
@@ -70,7 +69,7 @@ public class Hand {
         }
     ).toList();
     
-    this.hand = sortedHand;
+    this.hand = new ArrayList<>(sortedHand);
   }
   
   @Override

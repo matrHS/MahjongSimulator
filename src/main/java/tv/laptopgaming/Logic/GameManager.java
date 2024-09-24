@@ -42,6 +42,14 @@ public class GameManager {
     currentPlayer = 0;
     hands.get(currentPlayer).sortHand();
     System.out.println(hands.get(currentPlayer).toString());
+    Scanner userInput = new Scanner(System.in);
+    int readInt = userInput.nextInt();
+    System.out.println("Discarded tile " + hands.get(currentPlayer).getTiles().get(readInt).toString());
+    hands.get(currentPlayer).discardTile(hands.get(currentPlayer).getTiles().get(readInt));
+    hands.get(currentPlayer).addTile(tileManager.dealTile());
+    System.out.println("Dealt tile " + hands.get(currentPlayer).getTiles().get(hands.get(currentPlayer).getTiles().size() - 1).toString());
+    hands.get(currentPlayer).sortHand();
+    System.out.println(hands.get(currentPlayer).toString());
 //    while (tileManager.getTilesSize() > 0) {
 //      Scanner userInput = new Scanner(System.in);
 //      System.out.println(hands.get(currentPlayer).toString());
