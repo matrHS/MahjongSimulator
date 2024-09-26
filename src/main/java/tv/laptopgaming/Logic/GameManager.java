@@ -47,8 +47,10 @@ public class GameManager {
         currentPlayer = 0;
       }
       hands.get(currentPlayer).sortHand();
+      hands.get(currentPlayer).addTile(tileManager.dealTile());
       System.out.println(hands.get(currentPlayer).getPlayerName() + " turn");
       System.out.println(hands.get(currentPlayer).toString());
+
       doTurn(userInput);
     }
   }
