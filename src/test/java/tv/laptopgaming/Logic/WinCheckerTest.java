@@ -77,11 +77,21 @@ class WinCheckerTest {
   }
   
   @Test
+  public void testTripleChecker() {
+    WinChecker winChecker = new WinChecker();
+    
+    assertEquals(1,winChecker.tripleCounter(randomNonWinningHand));
+    assertEquals(2,winChecker.tripleCounter(randomWinningHand));
+  }
+  
+  @Test
   public void testWinningHand() {
     WinChecker winChecker = new WinChecker();
     
     assertFalse(winChecker.isWinningHand(randomNonWinningHand));
     assertTrue(winChecker.isWinningHand(pairWinningHand));
   }
+  
+  
   
 }
