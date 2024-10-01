@@ -39,6 +39,14 @@ public class Hand {
     return this.hand;
   }
   
+  public List<Tile> getTilesSection(int start, int end) {
+    if (start < 0 || end > this.hand.size()) {
+      throw new IndexOutOfBoundsException();
+    }
+    
+    return this.hand.subList(start, end);
+  }
+  
   public String getPlayerName() {
     return this.playerName;
   }

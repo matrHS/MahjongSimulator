@@ -9,6 +9,8 @@ import tv.laptopgaming.Entity.Tile;
 
 public class WinChecker {
   
+  static TileHelper tileHelper = new TileHelper();
+  
   
   public static int pairCounter(Hand hand) {
     int pairs = 0;
@@ -66,6 +68,25 @@ public class WinChecker {
               series++;
               i += 2;
             }
+          }
+        }
+      }
+    }
+    
+    return series;
+  }
+
+  public int seriesCounter2(Hand hand) {
+    int series = 0;
+    List<Tile> tiles = hand.getTiles();
+    int index=0;
+    for (int i = 0; i < hand.getTiles().size() - 2; i++) {
+      if (tileHelper.tileListOnlyNumberTiles(hand.getTilesSection(i,i+3))
+              && tiles.get(i).compareTo(tiles.get(i+1)) == 0) {
+        if (tileHelper.numberTileListContainsNext(hand.getTilesSection(i, i+3))) {
+          if (tileHelper.numberTileListContainsNext(hand.getTilesSection(i+1,i+4))) {
+            series++;
+            i++;
           }
         }
       }

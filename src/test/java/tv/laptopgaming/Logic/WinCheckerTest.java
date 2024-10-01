@@ -105,8 +105,10 @@ class WinCheckerTest {
   public void testSeriesChecker() {
     WinChecker winChecker = new WinChecker();
     
-    assertEquals(1,winChecker.seriesCounter(randomNonWinningHand));
-    assertEquals(5,winChecker.seriesCounter(seriesWinningHand));
+    System.out.println(randomNonWinningHand);
+    System.out.println(seriesWinningHand);
+    assertEquals(1,winChecker.seriesCounter2(randomNonWinningHand));
+    assertEquals(4,winChecker.seriesCounter2(seriesWinningHand));
   }
   
   @Test

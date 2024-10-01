@@ -14,6 +14,11 @@ public class NumberTile extends Tile{
     this.setNumber(number);
   }
   
+  public NumberTile(NumberTile numberTile) {
+    super(numberTile.getSuit());
+    this.setNumber(numberTile.getNumber());
+  }
+  
   private void setNumber(int number) {
     this.number = number;
   }
