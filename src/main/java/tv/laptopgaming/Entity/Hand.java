@@ -1,6 +1,7 @@
 package tv.laptopgaming.Entity;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Hand {
@@ -70,6 +71,11 @@ public class Hand {
     ).toList();
     
     this.hand = new ArrayList<>(sortedHand);
+  }
+  
+  public Iterator<Tile> getIterator() {
+    
+    return this.getTiles().iterator();
   }
   
   @Override

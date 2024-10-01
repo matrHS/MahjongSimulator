@@ -1,5 +1,6 @@
 package tv.laptopgaming.Logic;
 
+import java.util.Iterator;
 import tv.laptopgaming.Entity.Hand;
 import tv.laptopgaming.Entity.HonorTile;
 import tv.laptopgaming.Entity.NumberTile;
@@ -37,15 +38,25 @@ public class WinChecker {
   
   public static int seriesCounter(Hand hand) {
     int series = 0;
-
-    for (int i = 0; i < hand.getTiles().size()-1; i++) {
-      if (hand.getTiles().get(i) instanceof NumberTile) {
-        
-      } else if (hand.getTiles().get(i) instanceof HonorTile) {
-        
+    Iterator<Tile> tileIterator = hand.getIterator();
+    
+    Tile workingTile = tileIterator.next();
+    
+    int count=0;
+    while (tileIterator.hasNext() && workingTile instanceof NumberTile) {
+      int storedNumber = ((NumberTile) workingTile).getNumber();
+      workingTile = tileIterator.next();
+      if (storedNumber+1 == ((NumberTile) workingTile).getNumber()) {
+        count++;
       }
-
+      if (count == 3) {
+        series++;
+        count = 0;
+      }
+      
+      return series;
     }
+    
     
     return series;
   }

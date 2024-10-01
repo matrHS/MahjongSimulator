@@ -16,6 +16,7 @@ class WinCheckerTest {
   private Hand randomNonWinningHand;
   private Hand randomWinningHand;
   private Hand pairWinningHand;
+  private Hand seriesWinningHand;
   
   @BeforeEach
   public void setUp() {
@@ -66,6 +67,20 @@ class WinCheckerTest {
     pairWinningHand.addTile(new NumberTile(Suit.Symbol, 3));
     pairWinningHand.addTile(new HonorTile(Suit.Dragon, Honor.Red));
     pairWinningHand.addTile(new HonorTile(Suit.Dragon, Honor.Red));
+    
+    seriesWinningHand = new Hand("seriesWinningHand");
+    seriesWinningHand.addTile(new NumberTile(Suit.Bamboo, 1));
+    seriesWinningHand.addTile(new NumberTile(Suit.Bamboo, 1));
+    seriesWinningHand.addTile(new NumberTile(Suit.Bamboo, 2));
+    seriesWinningHand.addTile(new NumberTile(Suit.Bamboo, 2));
+    seriesWinningHand.addTile(new NumberTile(Suit.Bamboo, 3));
+    seriesWinningHand.addTile(new NumberTile(Suit.Bamboo, 3));
+    seriesWinningHand.addTile(new NumberTile(Suit.Dots, 6));
+    seriesWinningHand.addTile(new NumberTile(Suit.Dots, 7));
+    seriesWinningHand.addTile(new NumberTile(Suit.Dots, 8));
+    seriesWinningHand.addTile(new NumberTile(Suit.Symbol, 4));
+    seriesWinningHand.addTile(new NumberTile(Suit.Symbol, 5));
+    seriesWinningHand.addTile(new NumberTile(Suit.Symbol, 6));
   }
   
   @Test
@@ -82,6 +97,13 @@ class WinCheckerTest {
     
     assertEquals(1,winChecker.tripleCounter(randomNonWinningHand));
     assertEquals(2,winChecker.tripleCounter(randomWinningHand));
+  }
+  
+  @Test
+  public void testSeriesChecker() {
+    WinChecker winChecker = new WinChecker();
+    
+    assertEquals(1,randomNonWinningHand);
   }
   
   @Test
