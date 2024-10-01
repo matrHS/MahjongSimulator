@@ -1,6 +1,7 @@
 package tv.laptopgaming.Logic;
 
 import java.util.Iterator;
+import java.util.List;
 import tv.laptopgaming.Entity.Hand;
 import tv.laptopgaming.Entity.HonorTile;
 import tv.laptopgaming.Entity.NumberTile;
@@ -38,25 +39,37 @@ public class WinChecker {
   
   public static int seriesCounter(Hand hand) {
     int series = 0;
-    Iterator<Tile> tileIterator = hand.getIterator();
-    
-    Tile workingTile = tileIterator.next();
-    
-    int count=0;
-    while (tileIterator.hasNext() && workingTile instanceof NumberTile) {
-      int storedNumber = ((NumberTile) workingTile).getNumber();
-      workingTile = tileIterator.next();
-      if (storedNumber+1 == ((NumberTile) workingTile).getNumber()) {
-        count++;
+    List<Tile> workingHand = hand.getTiles();
+
+    int count = 0;
+    for (int i = 0; i < workingHand.size()-2; i++) {
+      
+      Tile currentTile = workingHand.get(i);
+      boolean nonNumberTile = false;
+      for (int j = i; j < i+3; j++) {
+        if (!(workingHand.get(j) instanceof NumberTile)) {
+          nonNumberTile = true;
+        }
       }
-      if (count == 3) {
-        series++;
-        count = 0;
+      if (nonNumberTile) {
+        break;
       }
       
-      return series;
+      int comparisonResult = currentTile.compareTo(workingHand.get(i+1));
+      if (comparisonResult == 0) {
+        if (((NumberTile) currentTile).getNumber()+1 == ((NumberTile) workingHand.get(i+1)).getNumber()) {
+          count++;
+          comparisonResult = currentTile.compareTo(workingHand.get(i+2));
+          if (comparisonResult == 0) {
+            if (((NumberTile) currentTile).getNumber()+2 == ((NumberTile) workingHand.get(i+2)).getNumber()) {
+              count++;
+              series++;
+              i += 2;
+            }
+          }
+        }
+      }
     }
-    
     
     return series;
   }

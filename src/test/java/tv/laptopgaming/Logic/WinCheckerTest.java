@@ -81,6 +81,8 @@ class WinCheckerTest {
     seriesWinningHand.addTile(new NumberTile(Suit.Symbol, 4));
     seriesWinningHand.addTile(new NumberTile(Suit.Symbol, 5));
     seriesWinningHand.addTile(new NumberTile(Suit.Symbol, 6));
+    seriesWinningHand.addTile(new HonorTile(Suit.Dragon, Honor.Red));
+    seriesWinningHand.addTile(new HonorTile(Suit.Dragon, Honor.Red));
   }
   
   @Test
@@ -103,7 +105,8 @@ class WinCheckerTest {
   public void testSeriesChecker() {
     WinChecker winChecker = new WinChecker();
     
-    assertEquals(1,randomNonWinningHand);
+    assertEquals(1,winChecker.seriesCounter(randomNonWinningHand));
+    assertEquals(5,winChecker.seriesCounter(seriesWinningHand));
   }
   
   @Test
