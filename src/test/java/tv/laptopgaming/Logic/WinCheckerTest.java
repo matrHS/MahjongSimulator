@@ -17,6 +17,7 @@ class WinCheckerTest {
   private Hand randomWinningHand;
   private Hand pairWinningHand;
   private Hand seriesWinningHand;
+  private Hand seriesUltraWinningHand;
   
   @BeforeEach
   public void setUp() {
@@ -83,6 +84,24 @@ class WinCheckerTest {
     seriesWinningHand.addTile(new NumberTile(Suit.Symbol, 6));
     seriesWinningHand.addTile(new HonorTile(Suit.Dragon, Honor.Red));
     seriesWinningHand.addTile(new HonorTile(Suit.Dragon, Honor.Red));
+    
+    seriesUltraWinningHand = new Hand("seriesUltraWinningHand");
+    seriesUltraWinningHand.addTile(new NumberTile(Suit.Symbol, 1));
+    seriesUltraWinningHand.addTile(new NumberTile(Suit.Symbol, 1));
+    seriesUltraWinningHand.addTile(new NumberTile(Suit.Symbol, 1));
+    seriesUltraWinningHand.addTile(new NumberTile(Suit.Symbol, 1));
+    seriesUltraWinningHand.addTile(new NumberTile(Suit.Symbol, 2));
+    seriesUltraWinningHand.addTile(new NumberTile(Suit.Symbol, 2));
+    seriesUltraWinningHand.addTile(new NumberTile(Suit.Symbol, 2));
+    seriesUltraWinningHand.addTile(new NumberTile(Suit.Symbol, 2));
+    seriesUltraWinningHand.addTile(new NumberTile(Suit.Symbol, 3));
+    seriesUltraWinningHand.addTile(new NumberTile(Suit.Symbol, 3));
+    seriesUltraWinningHand.addTile(new NumberTile(Suit.Symbol, 3));
+    seriesUltraWinningHand.addTile(new NumberTile(Suit.Symbol, 3));
+    seriesUltraWinningHand.addTile(new NumberTile(Suit.Bamboo, 5));
+    seriesUltraWinningHand.addTile(new NumberTile(Suit.Bamboo, 5));
+    
+    
   }
   
   @Test
@@ -109,6 +128,7 @@ class WinCheckerTest {
     System.out.println(seriesWinningHand);
     assertEquals(1,winChecker.seriesCounter2(randomNonWinningHand));
     assertEquals(4,winChecker.seriesCounter2(seriesWinningHand));
+    assertEquals(4,winChecker.seriesCounter2(seriesUltraWinningHand));
   }
   
   @Test

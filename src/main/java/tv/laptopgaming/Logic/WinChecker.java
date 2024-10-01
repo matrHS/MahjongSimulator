@@ -1,10 +1,12 @@
 package tv.laptopgaming.Logic;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import tv.laptopgaming.Entity.Hand;
 import tv.laptopgaming.Entity.HonorTile;
 import tv.laptopgaming.Entity.NumberTile;
+import tv.laptopgaming.Entity.Suit;
 import tv.laptopgaming.Entity.Tile;
 
 public class WinChecker {
@@ -79,16 +81,11 @@ public class WinChecker {
   public int seriesCounter2(Hand hand) {
     int series = 0;
     List<Tile> tiles = hand.getTiles();
-    int index=0;
-    for (int i = 0; i < hand.getTiles().size() - 2; i++) {
-      if (tileHelper.tileListOnlyNumberTiles(hand.getTilesSection(i,i+3))
-              && tiles.get(i).compareTo(tiles.get(i+1)) == 0) {
-        if (tileHelper.numberTileListContainsNext(hand.getTilesSection(i, i+3))) {
-          if (tileHelper.numberTileListContainsNext(hand.getTilesSection(i+1,i+4))) {
-            series++;
-            i++;
-          }
-        }
+    boolean[] checked = new boolean[tiles.size()];
+    for (Suit suit : Suit.values()) {
+      ArrayList<Tile> suitList = new ArrayList<>(hand.getTilesOfSuit(suit));
+      if (suitList.isEmpty()) {
+        continue;
       }
     }
     
