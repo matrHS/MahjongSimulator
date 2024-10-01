@@ -39,6 +39,7 @@ public class GameManager {
   }
   
   public void startGame() {
+    WinChecker winChecker = new WinChecker();
     currentPlayer = 0;
     Scanner userInput = new Scanner(System.in);
     
@@ -63,6 +64,7 @@ public class GameManager {
     System.out.println("Dealt tile " + hands.get(currentPlayer).getTiles().get(hands.get(currentPlayer).getTiles().size() - 1).toString());
     hands.get(currentPlayer).sortHand();
     System.out.println(hands.get(currentPlayer).toString());
+    System.out.println(WinChecker.pairCounter(hands.get(currentPlayer)));
     currentPlayer++;
   }
 
