@@ -1,6 +1,8 @@
 package tv.laptopgaming.Logic;
 
 import tv.laptopgaming.Entity.Hand;
+import tv.laptopgaming.Entity.HonorTile;
+import tv.laptopgaming.Entity.NumberTile;
 import tv.laptopgaming.Entity.Tile;
 
 public class WinChecker {
@@ -18,6 +20,31 @@ public class WinChecker {
     return pairs;
   }
   
+  public static int seriesCounter(Hand hand) {
+    int series = 0;
+
+    for (int i = 0; i < hand.getTiles().size()-1; i++) {
+      if (hand.getTiles().get(i) instanceof NumberTile) {
+        
+      } else if (hand.getTiles().get(i) instanceof HonorTile) {
+        
+      }
+
+    }
+    
+    return series;
+  }
   
+  public static boolean isWinningHand(Hand hand) {
+    boolean winningHand = false;
+    int pairs = pairCounter(hand);
+    
+    
+    if (pairs == 7) {
+      winningHand = true;
+    }
+    
+    return winningHand;
+  }
   
 }

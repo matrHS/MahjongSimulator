@@ -19,7 +19,7 @@ public class HonorTile extends Tile{
     this.honorSymbol = honor;
   }
   
-  private Honor getHonor() {
+  public Honor getHonor() {
     return this.honorSymbol;
   }
   

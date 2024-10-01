@@ -18,7 +18,7 @@ public class NumberTile extends Tile{
     this.number = number;
   }
   
-  private int getNumber() {
+  public int getNumber() {
     return this.number;
   }
 
