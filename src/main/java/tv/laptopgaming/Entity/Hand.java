@@ -1,7 +1,9 @@
 package tv.laptopgaming.Entity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Hand {
@@ -59,6 +61,22 @@ public class Hand {
     if (hand.contains(tile)) {
       this.removeTile(tile);
     }
+  }
+  
+  public HashMap getTileHashOfSuit(Suit suit) {
+    List<Tile> suitList = getTilesOfSuit(suit);
+    HashMap<Tile, Integer> tileMap = new HashMap<>();
+    
+    Tile prevTile = null;
+    Integer tileCount = 0;
+    for (Tile tile : suitList) {
+      if (tileMap.containsKey(tile)) {
+        
+      }
+      
+    }
+    
+    return tileMap;
   }
   
   public void sortHand() {

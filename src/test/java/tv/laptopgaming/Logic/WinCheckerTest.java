@@ -123,9 +123,8 @@ class WinCheckerTest {
   @Test
   public void testSeriesChecker() {
     WinChecker winChecker = new WinChecker();
-    
-    System.out.println(randomNonWinningHand);
-    System.out.println(seriesWinningHand);
+
+    System.out.println(randomWinningHand.getTileHashOfSuit(Suit.Bamboo));
     assertEquals(1,winChecker.seriesCounter2(randomNonWinningHand));
     assertEquals(4,winChecker.seriesCounter2(seriesWinningHand));
     assertEquals(4,winChecker.seriesCounter2(seriesUltraWinningHand));
