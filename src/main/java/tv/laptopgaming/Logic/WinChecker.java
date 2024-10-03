@@ -3,6 +3,10 @@ package tv.laptopgaming.Logic;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.NavigableSet;
+import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 import tv.laptopgaming.Entity.Hand;
 import tv.laptopgaming.Entity.HonorTile;
 import tv.laptopgaming.Entity.NumberTile;
@@ -80,15 +84,26 @@ public class WinChecker {
 
   public int seriesCounter2(Hand hand) {
     int series = 0;
-    List<Tile> tiles = hand.getTiles();
-    boolean[] checked = new boolean[tiles.size()];
-    for (Suit suit : Suit.values()) {
-      ArrayList<Tile> suitList = new ArrayList<>(hand.getTilesOfSuit(suit));
-      if (suitList.isEmpty()) {
-        continue;
+    List<NavigableSet<Tile>> tileSets = new ArrayList<>();
+    List<Tile> workingHand = hand.getTilesOfSuit(Suit.Bamboo);
+    for (Tile tile : workingHand) {
+      if (tileSets.isEmpty()) {
+        NavigableSet<Tile> test = new TreeSet<>();
+        test.addLast(tile);
+        tileSets.add(new TreeSet<>());
+        tileSets.getFirst().addLast(tile);
+      }
+      for (NavigableSet<Tile> set : tileSets) {
+        if (set.getLast().equals(tile)) {
+          continue;
+        }
+        if (((NumberTile) set.getLast()).getNumber() + 1 == ((NumberTile) tile).getNumber()) {
+          set.addLast(tile);
+          break;
+        }
       }
     }
-    
+    System.out.println(tileSets);
     return series;
   }
   
