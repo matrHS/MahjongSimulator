@@ -1,8 +1,10 @@
 package tv.laptopgaming.Entity;
 
-public class HonorTile extends Tile{
+public class HonorTile implements Tile{
   
   private Honor honorSymbol;
+  
+  private Suit suit;
   
   /**
    * Constructor for Tile
@@ -11,7 +13,7 @@ public class HonorTile extends Tile{
    * @param honor of the tile.
    */
   public HonorTile(Suit suit, Honor honor) {
-    super(suit);
+    this.setSuit(suit);
     this.setHonor(honor);
   }
   
@@ -27,9 +29,27 @@ public class HonorTile extends Tile{
   public int compareTo(Tile o) {
     return this.getHonor().compareTo(((HonorTile) o).getHonor());
   }
+
+  @Override
+  public int compareTo(Object o) {
+    if (!(o instanceof HonorTile))
+      throw new IllegalArgumentException("Compared tile not Honor tile");
+    return this.getHonor().compareTo(((HonorTile) o).getHonor());
+  }
   
   @Override
   public String toString() {
     return this.getSuit() + " " + this.getHonor();
   }
+  
+  public void setSuit(Suit suit) {
+    this.suit = suit;
+  }
+  
+  @Override
+  public Suit getSuit() {
+    return this.suit;
+  }
+
+  
 }

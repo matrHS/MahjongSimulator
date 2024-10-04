@@ -44,7 +44,7 @@ public class GameManager {
     Scanner userInput = new Scanner(System.in);
     
     while (tileManager.getTilesSize() > 0) {
-      if (currentPlayer == hands.size()-1) {
+      if (currentPlayer == hands.size()) {
         currentPlayer = 0;
       }
       hands.get(currentPlayer).sortHand();
