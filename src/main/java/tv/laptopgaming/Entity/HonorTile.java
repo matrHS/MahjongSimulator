@@ -1,6 +1,6 @@
 package tv.laptopgaming.Entity;
 
-public class HonorTile implements Tile{
+public class HonorTile implements Tile, Comparable<Tile> {
   
   private Honor honorSymbol;
   
@@ -26,12 +26,14 @@ public class HonorTile implements Tile{
   }
   
   
-  public int compareTo(Tile o) {
-    return this.getHonor().compareTo(((HonorTile) o).getHonor());
-  }
+//  public int compareTo(Tile o) {
+//    return this.getHonor().compareTo(((HonorTile) o).getHonor());
+//  }
+
+  
 
   @Override
-  public int compareTo(Object o) {
+  public int compareTo(Tile o) {
     if (!(o instanceof HonorTile))
       throw new IllegalArgumentException("Compared tile not Honor tile");
     return this.getHonor().compareTo(((HonorTile) o).getHonor());
@@ -50,6 +52,7 @@ public class HonorTile implements Tile{
   public Suit getSuit() {
     return this.suit;
   }
+
 
   
 }

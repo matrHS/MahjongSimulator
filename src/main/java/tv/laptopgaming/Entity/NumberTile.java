@@ -1,6 +1,6 @@
 package tv.laptopgaming.Entity;
 
-public class NumberTile implements Tile {
+public class NumberTile implements Tile, Comparable<Tile> {
   
   private Suit suit;
   private int number;
@@ -41,10 +41,10 @@ public class NumberTile implements Tile {
 //  }
 
   @Override
-  public int compareTo(Object o) {
+  public int compareTo(Tile o) {
     if (!(o instanceof NumberTile))
       throw new IllegalArgumentException("Comparison object not number tile");
-    
+
     int comparisonValue = this.getSuit().compareTo(((NumberTile)o).getSuit());
     if (comparisonValue == 0) {
       comparisonValue = Integer.compare(this.getNumber(), ((NumberTile)o).getNumber());
@@ -68,4 +68,5 @@ public class NumberTile implements Tile {
   }
 
 
+  
 }

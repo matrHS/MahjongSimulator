@@ -6,6 +6,5 @@ public interface Tile {
   
   public Suit getSuit();
   
-  public int compareTo(Object o);
   
 }
