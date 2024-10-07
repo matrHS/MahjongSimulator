@@ -9,7 +9,6 @@ import tv.laptopgaming.Entity.Honor;
 import tv.laptopgaming.Entity.HonorTile;
 import tv.laptopgaming.Entity.NumberTile;
 import tv.laptopgaming.Entity.Suit;
-import tv.laptopgaming.Entity.Tile;
 
 class WinCheckerTest {
 
@@ -18,6 +17,7 @@ class WinCheckerTest {
   private Hand pairWinningHand;
   private Hand seriesWinningHand;
   private Hand seriesUltraWinningHand;
+  private Hand seriesGapWinningHand;
   
   @BeforeEach
   public void setUp() {
@@ -100,8 +100,22 @@ class WinCheckerTest {
     seriesUltraWinningHand.addTile(new NumberTile(Suit.Symbol, 3));
     seriesUltraWinningHand.addTile(new NumberTile(Suit.Bamboo, 5));
     seriesUltraWinningHand.addTile(new NumberTile(Suit.Bamboo, 5));
-    
-    
+
+    seriesGapWinningHand = new Hand("test");
+    seriesGapWinningHand.addTile(new NumberTile(Suit.Symbol, 1));
+    seriesGapWinningHand.addTile(new NumberTile(Suit.Symbol, 2));
+    seriesGapWinningHand.addTile(new NumberTile(Suit.Symbol, 3));
+    seriesGapWinningHand.addTile(new NumberTile(Suit.Symbol, 5));
+    seriesGapWinningHand.addTile(new NumberTile(Suit.Symbol, 6));
+    seriesGapWinningHand.addTile(new NumberTile(Suit.Symbol, 7));
+    seriesGapWinningHand.addTile(new NumberTile(Suit.Symbol, 7));
+    seriesGapWinningHand.addTile(new NumberTile(Suit.Symbol, 8));
+    seriesGapWinningHand.addTile(new NumberTile(Suit.Symbol, 9));
+    seriesGapWinningHand.addTile(new NumberTile(Suit.Bamboo, 3));
+    seriesGapWinningHand.addTile(new NumberTile(Suit.Bamboo, 4));
+    seriesGapWinningHand.addTile(new NumberTile(Suit.Bamboo, 5));
+    seriesGapWinningHand.addTile(new NumberTile(Suit.Dots, 5));
+    seriesGapWinningHand.addTile(new NumberTile(Suit.Dots, 5));
   }
   
   @Test
@@ -124,10 +138,10 @@ class WinCheckerTest {
   public void testSeriesChecker() {
     WinChecker winChecker = new WinChecker();
 
-    System.out.println(randomWinningHand.getTileHashOfSuit(Suit.Bamboo));
-    assertEquals(1,winChecker.seriesCounter2(randomNonWinningHand));
-    assertEquals(4,winChecker.seriesCounter2(seriesWinningHand));
-    assertEquals(4,winChecker.seriesCounter2(seriesUltraWinningHand));
+    assertEquals(1,winChecker.seriesCounter(randomNonWinningHand));
+    assertEquals(4,winChecker.seriesCounter(seriesWinningHand));
+    assertEquals(4,winChecker.seriesCounter(seriesUltraWinningHand));
+    assertEquals(4,winChecker.seriesCounter(seriesGapWinningHand));
   }
   
   @Test
