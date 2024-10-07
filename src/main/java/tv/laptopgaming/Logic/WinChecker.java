@@ -12,8 +12,13 @@ import tv.laptopgaming.Entity.Tile;
 public class WinChecker {
   
   static TileHelper tileHelper = new TileHelper();
-  
-  
+
+  /**
+   * Checks for pairs in hand.
+   *
+   * @param hand Hand to check for pairs
+   * @return Number of pairs found
+   */
   public static int pairCounter(Hand hand) {
     int pairs = 0;
     Hand workingHand = hand;
@@ -27,7 +32,13 @@ public class WinChecker {
     
     return pairs;
   }
-  
+
+  /**
+   * Checks for triples in hand.
+   *
+   * @param hand Hand to check for triples
+   * @return Number of triples found
+   */
   public static int tripleCounter(Hand hand) {
     int triple = 0;
 
@@ -68,15 +79,22 @@ public class WinChecker {
       // Exits if there are no number tiles in the hand (Honor tiles cant be series)
       if (tileHelper.tileListOnlyNumberTiles(workingHand)) {
         for (Tile tile : workingHand) {
-          // Adds the first tile to the first set (First tile will be added twice)
+          // Adds the first tile to the first set (skips tile after adding it to the first set)
           if (tileSets.isEmpty()) {
             tileSets.add(new TreeSet<>(Comparator.comparing(Tile::toString)));
             tileSets.getFirst().add(tile);
+            continue;
           }
           // Loops equals to the number of sets
           for (int i = 0; i < tileSets.size(); i++) {
+            
+            // Added a check to see if there is another set in list.
+            // If there is, it will continue to the next set. 
+            // if not, it will check for duplicate and add to a new set
             if (tileSets.get(i).size() == 3) {
-              continue;
+              if (tileSets.size() > i + 1) {
+                continue;
+              }
             }
             // Check if the current tile is in series with the last tile in current set
             if (((NumberTile) tileSets.get(i).getLast()).getNumber() + 1 == ((NumberTile) tile).getNumber()) {
@@ -109,7 +127,14 @@ public class WinChecker {
     }
     return series;
   }
-  
+
+  /**
+   * Work in progress.
+   * Planning to add separate methods defining each winning hand.
+   *
+   * @param hand Hand to check for winning hand
+   * @return True if hand is a winning hand
+   */
   public static boolean isWinningHand(Hand hand) {
     boolean winningHand = false;
     int pairs = pairCounter(hand);
