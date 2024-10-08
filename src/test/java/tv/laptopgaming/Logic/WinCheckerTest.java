@@ -123,6 +123,7 @@ class WinCheckerTest {
     WinChecker winChecker = new WinChecker();
     
     assertEquals(5, winChecker.pairCounter(randomNonWinningHand));
+    assertEquals(4, winChecker.pairCounter(seriesWinningHand));
     assertEquals(7, winChecker.pairCounter(pairWinningHand));
   }
   
