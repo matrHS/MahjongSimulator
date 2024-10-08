@@ -151,6 +151,8 @@ class WinCheckerTest {
     
     assertFalse(winChecker.isWinningHand(randomNonWinningHand));
     assertTrue(winChecker.isWinningHand(pairWinningHand));
+    assertTrue(winChecker.isWinningHand(seriesWinningHand));
+    assertTrue(winChecker.isWinningHand(randomWinningHand));
   }
   
   

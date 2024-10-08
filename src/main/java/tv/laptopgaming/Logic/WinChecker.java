@@ -67,7 +67,7 @@ public class WinChecker {
    * @param hand Hand to check for series
    * @return Number of series found
    */
-  public int seriesCounter(Hand hand) {
+  public static int seriesCounter(Hand hand) {
     int series = 0;
     List<TreeSet<Tile>> tileSets = new ArrayList<>();
     List<Tile> workingHand = hand.getTiles();
@@ -139,11 +139,17 @@ public class WinChecker {
   public static boolean isWinningHand(Hand hand) {
     boolean winningHand = false;
     int pairs = pairCounter(hand);
-
-
+    int series = seriesCounter(hand);
+    int triple = tripleCounter(hand);
+    
     if (pairs == 7) {
       winningHand = true;
+    } else if (series == 4 && pairs == 1) {
+      winningHand = true;
+    } else if (triple == 4 && pairs == 1) {
+      winningHand = true;
     }
+
 
     return winningHand;
   }
