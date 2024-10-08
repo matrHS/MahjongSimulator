@@ -2,6 +2,9 @@ package tv.laptopgaming.Logic;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.TreeSet;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import tv.laptopgaming.Entity.Hand;
@@ -9,9 +12,11 @@ import tv.laptopgaming.Entity.Honor;
 import tv.laptopgaming.Entity.HonorTile;
 import tv.laptopgaming.Entity.NumberTile;
 import tv.laptopgaming.Entity.Suit;
+import tv.laptopgaming.Entity.Tile;
 
 class WinCheckerTest {
 
+  static TileHelper tileHelper = new TileHelper();
   private Hand randomNonWinningHand;
   private Hand randomWinningHand;
   private Hand pairWinningHand;
@@ -117,14 +122,31 @@ class WinCheckerTest {
     seriesGapWinningHand.addTile(new NumberTile(Suit.Dots, 5));
     seriesGapWinningHand.addTile(new NumberTile(Suit.Dots, 5));
   }
+
+  @Test
+  public void testSubtractList() {
+    WinChecker winChecker = new WinChecker();
+    
+    List<TreeSet<Tile>> seriesUltraList = winChecker.seriesList(seriesUltraWinningHand);
+    List<Tile> seriesUltraRemoved = seriesUltraWinningHand.getHandMinusList(
+        tileHelper.convertTreeToFlatSetNonSingle(seriesUltraList));
+
+    List<TreeSet<Tile>> randomWinningList = winChecker.seriesList(randomWinningHand);
+    List<Tile> randomWinningRemoved = randomWinningHand.getHandMinusList(
+        tileHelper.convertTreeToFlatSetNonSingle(randomWinningList));
+    
+    
+    assertEquals(1, winChecker.pairCounter(seriesUltraRemoved));
+    assertEquals(3, winChecker.pairCounter(randomWinningRemoved));
+  }
   
   @Test
   public void testPairChecker() {
     WinChecker winChecker = new WinChecker();
     
-    assertEquals(5, winChecker.pairCounter(randomNonWinningHand));
-    assertEquals(4, winChecker.pairCounter(seriesWinningHand));
-    assertEquals(7, winChecker.pairCounter(pairWinningHand));
+    assertEquals(5, winChecker.pairCounter(randomNonWinningHand.getTiles()));
+    assertEquals(4, winChecker.pairCounter(seriesWinningHand.getTiles()));
+    assertEquals(7, winChecker.pairCounter(pairWinningHand.getTiles()));
   }
   
   @Test
@@ -144,6 +166,8 @@ class WinCheckerTest {
     assertEquals(4,winChecker.seriesCounter(seriesUltraWinningHand));
     assertEquals(4,winChecker.seriesCounter(seriesGapWinningHand));
   }
+  
+
   
   @Test
   public void testWinningHand() {

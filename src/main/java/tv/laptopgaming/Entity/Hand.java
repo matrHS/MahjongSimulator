@@ -49,6 +49,14 @@ public class Hand {
     return this.hand.subList(start, end);
   }
   
+  public List<Tile> getHandMinusList(List<Tile> removeTiles) {
+    List<Tile> newTiles = this.hand;
+    
+    newTiles.removeAll(removeTiles);
+    
+    return newTiles;
+  }
+  
   public List<Tile> getTilesOfSuit(Suit suit) {
     return this.hand.stream().filter(tile -> tile.getSuit().equals(suit)).toList();
   }

@@ -1,6 +1,8 @@
 package tv.laptopgaming.Logic;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeSet;
 import tv.laptopgaming.Entity.HonorTile;
 import tv.laptopgaming.Entity.NumberTile;
 import tv.laptopgaming.Entity.Tile;
@@ -28,5 +30,16 @@ public final class TileHelper {
     }
 
     return state;
+  }
+  
+  public List<Tile> convertTreeToFlatSetNonSingle(List<TreeSet<Tile>> tileSets) {
+    List<Tile> tiles = new ArrayList<>();
+    for (TreeSet<Tile> tileSet : tileSets) {
+      if (tileSet.size() > 1) {
+        tiles.addAll(tileSet);
+      }
+    }
+    
+    return tiles;
   }
 }

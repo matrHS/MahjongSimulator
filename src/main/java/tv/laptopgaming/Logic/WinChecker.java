@@ -15,15 +15,14 @@ public class WinChecker {
   /**
    * Checks for pairs in hand.
    *
-   * @param hand Hand to check for pairs
+   * @param tiles List of tiles to check for pairs
    * @return Number of pairs found
    */
-  public static int pairCounter(Hand hand) {
+  public static int pairCounter(List<Tile> tiles) {
     int pairs = 0;
-    Hand workingHand = hand;
 
-    for (int i = 0; i < hand.getTiles().size() - 1; i++) {
-      if (hand.getTiles().get(i).toString().equals(hand.getTiles().get(i + 1).toString())) {
+    for (int i = 0; i < tiles.size() - 1; i++) {
+      if (tiles.get(i).toString().equals(tiles.get(i + 1).toString())) {
         pairs++;
         i++;
       }
@@ -31,6 +30,8 @@ public class WinChecker {
 
     return pairs;
   }
+  
+
 
   /**
    * Checks for triples in hand.
@@ -52,23 +53,30 @@ public class WinChecker {
   }
 
   /**
-   * Checks for series of 3 tiles for all suits in hand.
-   * Not the most maintainable solution, but it works well.
-   * <br>
-   * Checks for series of 3 and allows for duplicates.
-   * if tile is in series with the tile in the first set, it is added to the first set.
-   * if tile is not in series, it checks if the tile is a duplicate
-   * if the tile is a duplicate, it checks if there is another set in the list
-   * if there is not another set, it adds the tile to a new set
-   * if the tile is not a duplicate, it checks if the tile is in series with the tile in the next set
-   * if it is, it adds the tile to the next set
-   * if it is not, it repeats the process of seeing if there are more sets to check against.
+   * Iterates over a list of series and counts number of series.
    *
    * @param hand Hand to check for series
    * @return Number of series found
    */
   public static int seriesCounter(Hand hand) {
     int series = 0;
+    List<TreeSet<Tile>> tileSets = seriesList(hand);
+    for (TreeSet<Tile> tileSet : tileSets) {
+      if (tileSet.size() == 3) {
+        series++;
+      }
+    }
+    System.out.println(tileSets);
+    return series;
+  }
+
+  /**
+   * Gets the list of sets that are series in a hand.
+   *
+   * @param hand Hand to check series for.
+   * @return List of series.
+   */
+  public static List<TreeSet<Tile>> seriesList(Hand hand) {
     List<TreeSet<Tile>> tileSets = new ArrayList<>();
     List<Tile> workingHand = hand.getTiles();
     for (Tile tile : workingHand) {
@@ -100,9 +108,6 @@ public class WinChecker {
             ((NumberTile) tile).getNumber()
             && tileSets.get(i).getLast().getSuit() == tile.getSuit()) {
           tileSets.get(i).add(tile);
-          if (tileSets.get(i).size() == 3) {
-            series++;
-          }
           break;
         }
         // Check if current tile is a duplicate with last tile in current set
@@ -125,10 +130,9 @@ public class WinChecker {
       }
       // Clears the tileSets list for the next suit
     }
-    System.out.println(tileSets);
-    return series;
+    return tileSets;
   }
-
+  
   /**
    * Work in progress.
    * Planning to add separate methods defining each winning hand.
@@ -138,7 +142,8 @@ public class WinChecker {
    */
   public static boolean isWinningHand(Hand hand) {
     boolean winningHand = false;
-    int pairs = pairCounter(hand);
+    List<TreeSet<Tile>> seriesList = seriesList(hand);
+    int pairs = pairCounter(hand.getTiles());
     int series = seriesCounter(hand);
     int triple = tripleCounter(hand);
     
